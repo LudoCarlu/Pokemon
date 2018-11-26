@@ -18,7 +18,7 @@ import javax.inject.Inject
 class PokemonViewModel : ViewModel(), LifecycleObserver {
 
     @Inject
-    lateinit var PokemonRepository: PokemonRepository
+    lateinit var pokemonRepository: PokemonRepository
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -28,7 +28,7 @@ class PokemonViewModel : ViewModel(), LifecycleObserver {
     init {
         initializeDagger()
 
-        liveDataListPokemon.value = PokemonRepository.getPokemonList()
+        liveDataListPokemon.value = pokemonRepository.getPokemonList()
 
     }
 

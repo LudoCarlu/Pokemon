@@ -30,4 +30,6 @@ class  PokemonAdapter(val context: Context, var listModel: List<Pokemon>) : Recy
             }
         }
     }
+
+    //TODO Ici pour l'image View
 }
