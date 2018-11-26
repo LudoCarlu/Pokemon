@@ -18,6 +18,7 @@ class PokemonRepositoryImpl @Inject constructor(
         //TODO : Changer cette liste via WebService
         val list = arrayListOf<Pokemon>()
         list.add(Pokemon("Salameche", "url"))
+        list.add(Pokemon("Carapuce", "url"))
         return list
     }
 
