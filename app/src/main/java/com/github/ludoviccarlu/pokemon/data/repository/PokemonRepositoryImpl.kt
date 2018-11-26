@@ -1,5 +1,6 @@
 package com.github.ludoviccarlu.pokemon.data.repository
 
+import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemonDetail
 import com.github.ludoviccarlu.pokemon.data.remote.RestApiService
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
 import io.reactivex.Single
@@ -26,11 +27,23 @@ class PokemonRepositoryImpl @Inject constructor(
                     }
                 }
         /*
-        //TODO : Changer cette liste via WebService
         val list = arrayListOf<Pokemon>()
         list.add(Pokemon("Salameche", "url"))
         list.add(Pokemon("Carapuce", "url"))
         return list*/
+    }
+
+    override fun getPokemonNameById(id : Int): Single<RestPokemonDetail> {
+
+        return restApiService.getPokemonNameById(id)
+                .map { response ->
+                    if(response.isSuccessful && response.body() != null){
+                        response.body()?.results //TODO Remplacer par le truc renvoyer
+                    } else {
+                        null
+                    }
+                }
+
     }
 
 

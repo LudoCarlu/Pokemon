@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.ludoviccarlu.pokemon.R
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
+import com.github.ludoviccarlu.pokemon.presentation.detail.DetailActivity
 import kotlinx.android.synthetic.main.pokemon_view_holder.view.*
 
 class  PokemonAdapter(val context: Context, var listModel: List<Pokemon>) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
@@ -24,12 +25,16 @@ class  PokemonAdapter(val context: Context, var listModel: List<Pokemon>) : Recy
 
     class ViewHolder(val context: Context, itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindItem(model: Pokemon) {
+            //TODO Récupérer l'id pour envoyer
             with(itemView) {
                 item_pokemon_name.text = model.name
+
+                itemView.setOnClickListener { context.startActivity(DetailActivity.newInstance(context, model.name))}
 
             }
         }
     }
 
     //TODO Ici pour l'image View
+
 }
