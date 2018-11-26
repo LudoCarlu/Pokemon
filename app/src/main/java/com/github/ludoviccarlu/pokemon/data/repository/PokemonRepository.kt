@@ -1,6 +1,7 @@
 package com.github.ludoviccarlu.pokemon.data.repository
 
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
+import io.reactivex.Single
 
 /**
  * Created by ludoviccarlu on 19/11/2018.
@@ -8,5 +9,5 @@ import com.github.ludoviccarlu.pokemon.domain.Pokemon
 
 interface PokemonRepository {
 
-    fun getPokemonList() : List<Pokemon>
+    fun getPokemonList() : Single<List<Pokemon>>
 }

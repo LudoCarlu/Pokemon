@@ -7,7 +7,9 @@ import android.arch.lifecycle.ViewModel
 import com.github.ludoviccarlu.pokemon.data.repository.PokemonRepository
 import com.github.ludoviccarlu.pokemon.di.PokemonApplication
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -28,7 +30,20 @@ class PokemonViewModel : ViewModel(), LifecycleObserver {
     init {
         initializeDagger()
 
-        liveDataListPokemon.value = pokemonRepository.getPokemonList()
+        //liveDataListPokemon.value = ;
+
+        //pokemonRepository.getPokemonList()
+
+        val disposable = pokemonRepository.getPokemonList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({list -> liveDataListPokemon.value = list
+                }, {t : Throwable? ->
+                    //TODO Show Error on Screen
+                    t!!.printStackTrace()
+                })
+
+        compositeDisposable.add(disposable)
 
     }
 
