@@ -1,5 +1,6 @@
 package com.github.ludoviccarlu.pokemon.data.repository
 
+import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemonDetail
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
 import io.reactivex.Single
 
@@ -10,4 +11,6 @@ import io.reactivex.Single
 interface PokemonRepository {
 
     fun getPokemonList() : Single<List<Pokemon>>
+
+    fun getPokemonNameById(pokemonId : Int) : Single<RestPokemonDetail>
 }

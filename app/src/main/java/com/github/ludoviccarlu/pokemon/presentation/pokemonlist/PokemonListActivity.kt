@@ -37,9 +37,9 @@ class PokemonListActivity : AppCompatActivity() {
 
     private fun setupRecyclerView(list : List<Pokemon>) {
         // Grid layout manager pour Card
-        val gridLayoutManager = GridLayoutManager(this, 2)
+        //val gridLayoutManager = GridLayoutManager(this, 2)
         val linearLayoutManager = LinearLayoutManager(this)
-        recycler_list_pokemon.layoutManager = gridLayoutManager
+        recycler_list_pokemon.layoutManager = linearLayoutManager
         recycler_list_pokemon.adapter = PokemonAdapter(this, list)
 
     }
