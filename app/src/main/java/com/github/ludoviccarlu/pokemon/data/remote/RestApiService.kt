@@ -7,6 +7,7 @@ import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import java.util.*
 
 /**
@@ -15,10 +16,11 @@ import java.util.*
 
 
 interface RestApiService {
-    @GET("/api/v2/pokemon")
+
+    @GET("/api/v2/pokemon/")
     fun getListPokemon() : Single<Response<RestPokemonData>>
 
-    @GET("/api/v2/pokemon/{pokemon_id}")
+    @GET("/api/v2/pokemon/{pokemon_id}/")
     fun getPokemonNameById(@Path(value = "pokemon_id", encoded = true) pokemonId : Int): Single<Response<RestPokemonDetail>>
 
 }

@@ -29,7 +29,9 @@ class  PokemonAdapter(val context: Context, var listModel: List<Pokemon>) : Recy
             with(itemView) {
                 item_pokemon_name.text = model.name
 
-                itemView.setOnClickListener { context.startActivity(DetailActivity.newInstance(context, model.name))}
+                val id = model.url.split('/')[6].toInt()
+
+                itemView.setOnClickListener { context.startActivity(DetailActivity.newInstance(context, id))}
 
             }
         }

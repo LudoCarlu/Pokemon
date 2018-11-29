@@ -12,5 +12,5 @@ interface PokemonRepository {
 
     fun getPokemonList() : Single<List<Pokemon>>
 
-    fun getPokemonNameById(pokeminId : Int) : Single<RestPokemonDetail>
+    fun getPokemonNameById(pokemonId : Int) : Single<RestPokemonDetail>
 }

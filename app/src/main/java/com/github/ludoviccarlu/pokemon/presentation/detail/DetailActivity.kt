@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.github.ludoviccarlu.pokemon.R
+import kotlinx.android.synthetic.main.detail_activity.*
 import javax.inject.Inject
 
 
@@ -18,7 +19,6 @@ class DetailActivity : AppCompatActivity() {
     companion object {
         private const val EXTRA_POKEMON_ID = "idPokemon"
 
-        // TODO dans POkemonADpater Passer l'id du pokemon en deuxième
         fun newInstance(context: Context, idPokemon : Int): Intent {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(EXTRA_POKEMON_ID, idPokemon)
@@ -42,12 +42,13 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initObserver() {
-        //TODO liveDATA champion a chnager
-        viewModel.liveDataChampion.observe(this, Observer {
+
+        viewModel.liveDataPokemonDetail.observe(this, Observer {
             restPokemonData -> restPokemonData?.let {
             pokemon_name.text = restPokemonData.name
-            pokemon_title.text = restPokemonData.title
-            pokemon_description.text = restPokemonData.description
+            pokemon_id.text = restPokemonData.id.toString()
+            //pokemon_title.text = restPokemonData.title
+            //pokemon_description.text = restPokemonData.description
         }
         })
     }

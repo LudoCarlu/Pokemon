@@ -20,7 +20,7 @@ class DetailViewModel : ViewModel(), LifecycleObserver {
     private val compositeDisposable = CompositeDisposable()
 
     //TODO Changer liveDataChampion to liveDataPokemonDetail
-    val liveDataChampion: MutableLiveData<RestPokemonDetail> = MutableLiveData()
+    val liveDataPokemonDetail: MutableLiveData<RestPokemonDetail> = MutableLiveData()
 
     init {
         initializeDagger()
@@ -31,7 +31,7 @@ class DetailViewModel : ViewModel(), LifecycleObserver {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    pokemonDetail -> liveDataChampion.value = pokemonDetail
+                    pokemonDetail -> liveDataPokemonDetail.value = pokemonDetail
                 }
         compositeDisposable.add(disposable)
                 }
