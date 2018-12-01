@@ -34,10 +34,12 @@ class PokemonViewModel : ViewModel(), LifecycleObserver {
 
         //pokemonRepository.getPokemonList()
 
+        System.out.print("BUG ICI")
         val disposable = pokemonRepository.getPokemonList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({list -> liveDataListPokemon.value = list
+                .subscribe({list ->
+                    liveDataListPokemon.value = list //TODO
                 }, {t : Throwable? ->
                     //TODO Show Error on Screen
                     t!!.printStackTrace()

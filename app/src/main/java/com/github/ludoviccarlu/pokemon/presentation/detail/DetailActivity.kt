@@ -45,8 +45,8 @@ class DetailActivity : AppCompatActivity() {
 
         viewModel.liveDataPokemonDetail.observe(this, Observer {
             restPokemonData -> restPokemonData?.let {
-            pokemon_name.text = restPokemonData.name
-            pokemon_id.text = restPokemonData.id.toString()
+            name.text = restPokemonData.name
+            //id.text = restPokemonData.id.toString()
             //pokemon_title.text = restPokemonData.title
             //pokemon_description.text = restPokemonData.description
         }
