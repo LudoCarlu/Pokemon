@@ -1,12 +1,16 @@
 package com.github.ludoviccarlu.pokemon.data.repository
 
 import android.util.Log
+import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemon
 import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemonDetail
 import com.github.ludoviccarlu.pokemon.data.remote.RestApiService
+import com.github.ludoviccarlu.pokemon.domain.Evolution
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
+import io.reactivex.Observable
 import io.reactivex.Single
 import org.json.JSONArray
 import org.json.JSONObject
+import retrofit2.Response
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,19 +23,21 @@ import javax.inject.Singleton
 class PokemonRepositoryImpl @Inject constructor(
         private val restApiService: RestApiService
 ) : PokemonRepository {
-    override fun getPokemonList(): Single<List<Pokemon>> {
+    override fun getPokemonList() : Single<List<Pokemon>> {
 
         return restApiService.getListPokemon()
                 .map { response ->
-                    if(response.isSuccessful && response.body() != null){
-                         response.body()?.results
+                    if (response.isSuccessful && response.body() != null) {
+                        System.out.println("JE SUIS LA 2")
+                        response.body()?.pokemon
                     } else {
                         null
                     }
                 }
         /*
         val list = arrayListOf<Pokemon>()
-        list.add(Pokemon("Salameche", "url"))
+        list.add(Pokemon(
+        ))
         list.add(Pokemon("Carapuce", "url"))
         return list*/
     }
