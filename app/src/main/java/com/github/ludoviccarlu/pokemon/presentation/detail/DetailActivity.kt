@@ -13,6 +13,7 @@ import javax.inject.Inject
 
 class DetailActivity : AppCompatActivity() {
 
+    //context.startActivity(DetailActivity.newInstance(context, id))
     @Inject
     lateinit var viewModel : DetailViewModel
 
@@ -26,6 +27,16 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.detail_activity)
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.detail_pokemon_container, DetailPokemonFragment.newInstance())
+                .commit()
+    }
+
+    /*
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
@@ -51,5 +62,12 @@ class DetailActivity : AppCompatActivity() {
             //pokemon_description.text = restPokemonData.description
         }
         })
-    }
+        */
+    //}
+
+
+
+
+
+
 }
