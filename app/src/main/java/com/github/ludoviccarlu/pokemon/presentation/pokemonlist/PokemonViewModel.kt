@@ -28,7 +28,6 @@ class PokemonViewModel : ViewModel(), LifecycleObserver {
 
     var liveDataListPokemon: MutableLiveData<List<Pokemon>> = MutableLiveData()
 
-
     init {
         initializeDagger()
 
@@ -38,6 +37,7 @@ class PokemonViewModel : ViewModel(), LifecycleObserver {
                 .subscribe({list ->
                     liveDataListPokemon.value = list //TODO
                     Common.commonPokemonList = list //Utiliser pour le changement des fragments
+
                 }, {t : Throwable? ->
                     //TODO Show Error on Screen
                     t!!.printStackTrace()

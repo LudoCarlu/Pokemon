@@ -26,7 +26,6 @@ interface RestApiService {
    // @GET("/api/v2/pokemon/{pokemon_id}/")
     //fun getPokemonNameById(@Path(value = "pokemon_id", encoded = true) pokemonId : Int): Single<Response<Pokemon>>
 
-    //@Headers("Content-Type: application/json")
     @GET("pokedex.json")
     fun getListPokemon() : Single<Response<RestPokemon>>
 

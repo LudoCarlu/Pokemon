@@ -23,8 +23,8 @@ data class Pokemon(
     val spawnTime : String? = null,
     val multipliers : List<Double>? = null,
     val weaknesses : List<String>? = null,
-    val nextEvolution : List<Evolution>? = null,
-    val prevEvolution : List<Evolution>? = null
+    val nextEvolution : List<Evolution>? = listOf(),
+    val prevEvolution : List<Evolution>? = listOf()
 
 
 )
