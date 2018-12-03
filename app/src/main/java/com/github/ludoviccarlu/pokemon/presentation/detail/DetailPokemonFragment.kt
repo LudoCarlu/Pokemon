@@ -96,20 +96,19 @@ class DetailPokemonFragment : Fragment() {
         val weaknessesAdapter = PokemonTypeAdapter(activity!!, pokemon.weaknesses!!)
         recycler_weaknesses.adapter = weaknessesAdapter
 
-        /*
-        if(pokemon.prevEvolution != null) {
 
-            System.out.println("Prev non null" + pokemon.prevEvolution!!.get(0).name)
-            val prevEvolutionAdapter = PokemonEvolutionAdapter(activity!!, pokemon.prevEvolution)
+        if(pokemon.prev_evolution != null) {
+
+            val prevEvolutionAdapter = PokemonEvolutionAdapter(activity!!, pokemon.prev_evolution)
             recycler_prev_evolution.adapter = prevEvolutionAdapter
         }
 
-        if(pokemon.nextEvolution != null) {
-            System.out.println("Next non null" + pokemon.nextEvolution!!.get(0).name)
-            val nextEvolutionAdapter = PokemonEvolutionAdapter(activity!!, pokemon.nextEvolution)
+        if(pokemon.next_evolution != null) {
+
+            val nextEvolutionAdapter = PokemonEvolutionAdapter(activity!!, pokemon.next_evolution)
             recycler_next_evolution.adapter = nextEvolutionAdapter
         }
-        */
+
 
 
     }

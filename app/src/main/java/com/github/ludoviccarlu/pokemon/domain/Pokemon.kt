@@ -16,15 +16,15 @@ data class Pokemon(
     val height: String? = null,
     val weight: String? = null,
     val candy: String? = null,
-    val candyCount: Int? = 0,
+    val candy_count: Int? = 0,
     val egg: String? = null,
-    val spawnChance : Double? = 0.0,
-    val avgSpawn : Double? = 0.0,
-    val spawnTime : String? = null,
+    val spawn_chance : Double? = 0.0,
+    val avg_spawn : Double? = 0.0,
+    val spawn_time : String? = null,
     val multipliers : List<Double>? = null,
     val weaknesses : List<String>? = null,
-    val nextEvolution : List<Evolution>? = listOf(),
-    val prevEvolution : List<Evolution>? = listOf()
+    val next_evolution : List<Evolution>? = null,
+    val prev_evolution : List<Evolution>? = null
 
 
 )
