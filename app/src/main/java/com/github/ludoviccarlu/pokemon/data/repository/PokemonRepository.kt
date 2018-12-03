@@ -13,6 +13,6 @@ interface PokemonRepository {
 
     fun getPokemonList() : Single<List<Pokemon>>
 
-    fun getPokemonNameById(pokemonId : Int) : Single<RestPokemonDetail>
+    //fun getPokemonById(pokemonId : Int) : Pokemon?
 
 }

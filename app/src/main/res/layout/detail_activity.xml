@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
+    <!--
     <ImageView
         android:id="@+id/front_default_img"
         android:layout_width="113dp"
@@ -71,4 +71,11 @@
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="397dp" />
+        -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/detail_pokemon_container">
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

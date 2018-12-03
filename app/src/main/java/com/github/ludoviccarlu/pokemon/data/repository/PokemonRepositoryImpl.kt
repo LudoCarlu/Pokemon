@@ -1,6 +1,7 @@
 package com.github.ludoviccarlu.pokemon.data.repository
 
 import android.util.Log
+import com.github.ludoviccarlu.pokemon.data.common.Common.commonPokemonList
 import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemon
 import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemonDetail
 import com.github.ludoviccarlu.pokemon.data.remote.RestApiService
@@ -28,71 +29,27 @@ class PokemonRepositoryImpl @Inject constructor(
         return restApiService.getListPokemon()
                 .map { response ->
                     if (response.isSuccessful && response.body() != null) {
-                        System.out.println("JE SUIS LA 2")
+                        System.out.println("RESPONSE " + response.body()?.pokemon)
+                        //TODO Investiguer pourquoi les évolutions ne remontent pas dans la réponse
                         response.body()?.pokemon
                     } else {
                         null
                     }
                 }
-        /*
-        val list = arrayListOf<Pokemon>()
-        list.add(Pokemon(
-        ))
-        list.add(Pokemon("Carapuce", "url"))
-        return list*/
     }
 
-    override fun getPokemonNameById(id : Int): Single<RestPokemonDetail> {
+    /*
+    override fun getPokemonById(id : Int): Pokemon? {
 
-        return restApiService.getPokemonNameById(id)
-                .map { response ->
-                    if(response.isSuccessful && response.body() != null){
-
-                        //RestPokemonDetail(JSONObject(response.body().toString()))
-
-                        System.out.println(response.body()!!.sprites)
-                        System.out.println(response.body()!!.types)
-
-
-                        RestPokemonDetail(
-                                response.body()!!.id,
-                                response.body()!!.name,
-                                response.body()!!.height,
-                                response.body()!!.weight,
-                                response.body()!!.sprites,
-                                response.body()!!.types
-                        )
-                        //TODO Convert sprites et types into String
-                    } else {
-                        null
-                    }
-                }
-
-    }
-
-    fun getSprites (jsonObject: JSONObject) : List<String> {
-        val sprites  = arrayListOf<String>()
-
-        sprites.add(jsonObject.getString("back_default"))
-        sprites.add(jsonObject.getString("front_default"))
-
-        return sprites
-    }
-
-    fun getTypes (jsonArray: JSONArray) : List<String> {
-        val types  = arrayListOf<String>()
-
-        var i = 0
-
-        while (i < jsonArray.length()) {
-            val typeObject = JSONObject(jsonArray[i].toString())
-            val type = typeObject.getJSONObject("type")
-            types.add(type.getString("name"))
-            i++
+        commonPokemonList.forEach {
+            if (it.id == id) {
+                return it
+            }
         }
+        return null
 
-        return types
     }
+    */
 
 
 }
