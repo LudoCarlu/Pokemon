@@ -1,17 +1,7 @@
 package com.github.ludoviccarlu.pokemon.data.repository
 
-import android.util.Log
-import com.github.ludoviccarlu.pokemon.data.common.Common.commonPokemonList
-import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemon
-import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemonDetail
 import com.github.ludoviccarlu.pokemon.data.remote.RestApiService
-import com.github.ludoviccarlu.pokemon.domain.Evolution
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
-import io.reactivex.Observable
-import io.reactivex.Single
-import org.json.JSONArray
-import org.json.JSONObject
-import retrofit2.Response
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -24,32 +14,12 @@ import javax.inject.Singleton
 class PokemonRepositoryImpl @Inject constructor(
         private val restApiService: RestApiService
 ) : PokemonRepository {
-    override fun getPokemonList() : Single<List<Pokemon>> {
-
-        return restApiService.getListPokemon()
-                .map { response ->
-                    if (response.isSuccessful && response.body() != null) {
-                        System.out.println("RESPONSE " + response.body()?.pokemon)
-                        //TODO Investiguer pourquoi les évolutions ne remontent pas dans la réponse
-                        response.body()?.pokemon
-                    } else {
-                        null
-                    }
-                }
+    override fun getPokemonList(): List<Pokemon> {
+        //TODO : Changer cette liste via WebService
+        val list = arrayListOf<Pokemon>()
+        list.add(Pokemon("Salameche", "url"))
+        return list
     }
-
-    /*
-    override fun getPokemonById(id : Int): Pokemon? {
-
-        commonPokemonList.forEach {
-            if (it.id == id) {
-                return it
-            }
-        }
-        return null
-
-    }
-    */
 
 
 }
