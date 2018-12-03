@@ -4,10 +4,13 @@ import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import com.github.ludoviccarlu.pokemon.data.common.Common
 import com.github.ludoviccarlu.pokemon.data.repository.PokemonRepository
 import com.github.ludoviccarlu.pokemon.di.PokemonApplication
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -18,17 +21,29 @@ import javax.inject.Inject
 class PokemonViewModel : ViewModel(), LifecycleObserver {
 
     @Inject
-    lateinit var PokemonRepository: PokemonRepository
+    lateinit var pokemonRepository: PokemonRepository
 
     private val compositeDisposable = CompositeDisposable()
 
-    var liveDataListPokemon: MutableLiveData<List<Pokemon>> = MutableLiveData()
 
+    var liveDataListPokemon: MutableLiveData<List<Pokemon>> = MutableLiveData()
 
     init {
         initializeDagger()
 
-        liveDataListPokemon.value = PokemonRepository.getPokemonList()
+        val disposable = pokemonRepository.getPokemonList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({list ->
+                    liveDataListPokemon.value = list //TODO
+                    Common.commonPokemonList = list //Utiliser pour le changement des fragments
+
+                }, {t : Throwable? ->
+                    //TODO Show Error on Screen
+                    t!!.printStackTrace()
+                })
+
+        compositeDisposable.add(disposable)
 
     }
 

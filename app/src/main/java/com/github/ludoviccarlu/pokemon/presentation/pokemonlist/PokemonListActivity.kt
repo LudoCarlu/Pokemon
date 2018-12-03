@@ -5,8 +5,12 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import com.github.ludoviccarlu.pokemon.R
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
+import kotlinx.android.synthetic.main.activity_pokemon_list.*
 
 class PokemonListActivity : AppCompatActivity() {
 
@@ -15,22 +19,29 @@ class PokemonListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pokemon_list)
+        initViewModel()
+        initObserver()
     }
 
     private fun initViewModel() {
-        ViewModelProviders.of(this).get(PokemonViewModel::class.java)
-        viewModel.let {lifecycle.addObserver(it)}
+        viewModel = ViewModelProviders.of(this).get(PokemonViewModel::class.java)
+        viewModel.let { lifecycle.addObserver(it) }
 
     }
 
     private fun initObserver() {
         viewModel.liveDataListPokemon.observe(this, Observer {
-            list -> setupRecyclerView(list)
+            list -> if(list != null) setupRecyclerView(list)
         })
     }
 
-    private fun setupRecyclerView(list : List<Pokemon>?) {
-        //TODO Implement Recycler View
+    private fun setupRecyclerView(list : List<Pokemon>) {
+        // Grid layout manager pour Card
+        //val gridLayoutManager = GridLayoutManager(this, 2)
+        val linearLayoutManager = LinearLayoutManager(this)
+        recycler_list_pokemon.layoutManager = linearLayoutManager
+        recycler_list_pokemon.adapter = PokemonAdapter(this, list)
+
     }
 
 
