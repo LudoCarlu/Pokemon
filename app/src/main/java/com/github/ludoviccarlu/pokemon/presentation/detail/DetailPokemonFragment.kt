@@ -110,7 +110,6 @@ class DetailPokemonFragment : Fragment() {
         }
 
 
-
     }
 
     companion object {

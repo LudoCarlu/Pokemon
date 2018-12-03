@@ -63,12 +63,8 @@ class HomeActivity : AppCompatActivity() {
 
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.list_pokemon_fragment, detailFragment)
-                fragmentTransaction.addToBackStack("detail")
+                //fragmentTransaction.addToBackStack("detail")
                 fragmentTransaction.commit()
-
-                // Set Pokemon Name to the toolbar
-                val pokemon = Common.commonPokemonList[idPokemon]
-                //toolbar.title = pokemon.name
 
 
 
