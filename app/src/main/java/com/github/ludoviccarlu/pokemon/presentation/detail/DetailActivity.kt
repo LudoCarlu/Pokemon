@@ -13,6 +13,10 @@ import com.github.ludoviccarlu.pokemon.R
 import com.github.ludoviccarlu.pokemon.data.common.Common
 import kotlinx.android.synthetic.main.detail_activity.*
 import javax.inject.Inject
+import android.view.KeyEvent.KEYCODE_BACK
+import android.content.DialogInterface
+import android.view.KeyEvent
+import android.view.View
 
 
 class DetailActivity : AppCompatActivity() {
@@ -24,7 +28,7 @@ class DetailActivity : AppCompatActivity() {
     companion object {
         private const val EXTRA_POKEMON_ID = "idPokemon"
 
-        fun newInstance(context: Context, idPokemon : Int?): Intent {
+        fun newInstance(context: Context ,idPokemon : Int?): Intent {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(EXTRA_POKEMON_ID, idPokemon)
             return intent
@@ -37,8 +41,14 @@ class DetailActivity : AppCompatActivity() {
 
         initFragment()
 
+        //Register BroadCast
+        /*
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(showDetailPokemonFragment, IntentFilter("EXTRA_DETAIL_ID_POKEMON"))
+        */
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(showEvolutionDetail, IntentFilter(Common.KEY_NUM_EVOLUTION))
+
     }
 
     fun initFragment() {
@@ -47,17 +57,14 @@ class DetailActivity : AppCompatActivity() {
         val detailFragment = DetailPokemonFragment.getInstance()
         val idPokemon = intent.getIntExtra(EXTRA_POKEMON_ID, -1)
 
-        System.out.println("ID du Pokemon " + idPokemon)
-
         val bundle = Bundle()
         bundle.putInt(EXTRA_POKEMON_ID, idPokemon)
-
         detailFragment.arguments = bundle
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.detail_pokemon_container, detailFragment)
-        fragmentTransaction.addToBackStack("detail")
         fragmentTransaction.commit()
+
 
     }
 
@@ -66,30 +73,31 @@ class DetailActivity : AppCompatActivity() {
 
             if(intent.action!!.toString() == Common.KEY_NUM_EVOLUTION) {
 
-                //Replace Fragment
-                val detailFragment = DetailPokemonFragment.getInstance()
-                val bundle = Bundle()
+                System.out.println("SHOW DETAIL EVOL")
+
+                //Delete current fragment to replace it
+                val oldFragment = DetailPokemonFragment.getInstance()
+                supportFragmentManager.beginTransaction().remove(oldFragment).commitAllowingStateLoss()
+
                 val num = intent.getStringExtra("num")
+
+                val newFragment = DetailPokemonFragment.newInstance()
+
+                val bundle = Bundle()
+
                 bundle.putString("num",num)
-                detailFragment.arguments = bundle
+
+                newFragment.arguments = bundle
 
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.remove(detailFragment) // Remove current
-                fragmentTransaction.replace(R.id.detail_pokemon_container, detailFragment)
-                fragmentTransaction.addToBackStack("detail")
-                fragmentTransaction.commit()
+                fragmentTransaction.replace(R.id.detail_pokemon_container, newFragment)
+                fragmentTransaction.commitAllowingStateLoss()
 
 
             }
         }
 
     }
-
-
-
-
-
-
 
 
 }
