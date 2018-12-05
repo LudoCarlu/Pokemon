@@ -30,7 +30,6 @@ class PokemonRepositoryImpl @Inject constructor(
                 .map { response ->
                     if (response.isSuccessful && response.body() != null) {
                         System.out.println("RESPONSE " + response.body()?.pokemon)
-                        //TODO Investiguer pourquoi les évolutions ne remontent pas dans la réponse
                         response.body()?.pokemon
                     } else {
                         null

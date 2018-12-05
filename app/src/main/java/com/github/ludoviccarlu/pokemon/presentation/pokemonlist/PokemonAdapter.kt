@@ -40,13 +40,12 @@ class  PokemonAdapter(val context: Context, var listModel: List<Pokemon>) : Recy
 
                 itemView.setOnClickListener {
 
-                    context.startActivity(DetailActivity.newInstance(context, model.id))
-                    //Toast.makeText(context, "Clicked on "+ model.name, Toast.LENGTH_SHORT).show()
+                    //LocalBroadcastManager.getInstance(context)
+                    //        .sendBroadcast(Intent("EXTRA_DETAIL_ID_POKEMON").putExtra("idPokemon",model.id))
 
-                    /*
-                    LocalBroadcastManager.getInstance(context)
-                            .sendBroadcast(Intent("EXTRA_DETAIL_ID_POKEMON").putExtra("idPokemon",model.id))
-                    */
+                    context.startActivity(DetailActivity.newInstance(context, model.id))
+                    Toast.makeText(context, "Clicked on "+ model.name, Toast.LENGTH_SHORT).show()
+
                 }
 
             }

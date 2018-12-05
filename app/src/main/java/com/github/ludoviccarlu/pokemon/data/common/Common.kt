@@ -26,6 +26,8 @@ object Common {
         return null
     }
 
+    val KEY_NUM_EVOLUTION = "evolution"
+
     fun getColorByType(type: String): Int {
         when (type) {
 

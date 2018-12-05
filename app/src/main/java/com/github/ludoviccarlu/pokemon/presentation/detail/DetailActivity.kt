@@ -2,14 +2,21 @@ package com.github.ludoviccarlu.pokemon.presentation.detail
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
+import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.app.AppCompatActivity
 import com.github.ludoviccarlu.pokemon.R
 import com.github.ludoviccarlu.pokemon.data.common.Common
 import kotlinx.android.synthetic.main.detail_activity.*
 import javax.inject.Inject
+import android.view.KeyEvent.KEYCODE_BACK
+import android.content.DialogInterface
+import android.view.KeyEvent
+import android.view.View
 
 
 class DetailActivity : AppCompatActivity() {
@@ -21,7 +28,7 @@ class DetailActivity : AppCompatActivity() {
     companion object {
         private const val EXTRA_POKEMON_ID = "idPokemon"
 
-        fun newInstance(context: Context, idPokemon : Int?): Intent {
+        fun newInstance(context: Context ,idPokemon : Int?): Intent {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(EXTRA_POKEMON_ID, idPokemon)
             return intent
@@ -32,71 +39,65 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
 
-        /*
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.detail_pokemon_container, DetailPokemonFragment.newInstance())
-                .commit()
-        */
         initFragment()
+
+        //Register BroadCast
+        /*
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(showDetailPokemonFragment, IntentFilter("EXTRA_DETAIL_ID_POKEMON"))
+        */
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(showEvolutionDetail, IntentFilter(Common.KEY_NUM_EVOLUTION))
+
     }
 
     fun initFragment() {
 
-        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        //supportActionBar!!.setDisplayShowHomeEnabled(true)
         //Replace Fragment
         val detailFragment = DetailPokemonFragment.getInstance()
         val idPokemon = intent.getIntExtra(EXTRA_POKEMON_ID, -1)
 
-        System.out.println("ID du Pokemon " + idPokemon)
-
         val bundle = Bundle()
-        bundle.putInt(EXTRA_POKEMON_ID,idPokemon)
-
+        bundle.putInt(EXTRA_POKEMON_ID, idPokemon)
         detailFragment.arguments = bundle
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.detail_pokemon_container, detailFragment)
-        //fragmentTransaction.addToBackStack("detail")
         fragmentTransaction.commit()
 
-        //Set Pokemon Name to the toolbar
-        //val pokemon = Common.commonPokemonList[idPokemon]
-        //toolbar.title = pokemon.name
+
     }
 
-    /*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.detail_activity)
-        initViewModel()
-        initObserver()
+    private val showEvolutionDetail = object: BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+
+            if(intent.action!!.toString() == Common.KEY_NUM_EVOLUTION) {
+
+                System.out.println("SHOW DETAIL EVOL")
+
+                //Delete current fragment to replace it
+                val oldFragment = DetailPokemonFragment.getInstance()
+                supportFragmentManager.beginTransaction().remove(oldFragment).commitAllowingStateLoss()
+
+                val num = intent.getStringExtra("num")
+
+                val newFragment = DetailPokemonFragment.newInstance()
+
+                val bundle = Bundle()
+
+                bundle.putString("num",num)
+
+                newFragment.arguments = bundle
+
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.detail_pokemon_container, newFragment)
+                fragmentTransaction.commitAllowingStateLoss()
 
 
-        viewModel.onStart(intent.getIntExtra(EXTRA_POKEMON_ID, -1))
-    }
-
-    private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        viewModel.let { lifecycle.addObserver(it) }
-    }
-
-    private fun initObserver() {
-
-        viewModel.liveDataPokemonDetail.observe(this, Observer {
-            restPokemonData -> restPokemonData?.let {
-            name.text = restPokemonData.name
-            //id.text = restPokemonData.id.toString()
-            //pokemon_title.text = restPokemonData.title
-            //pokemon_description.text = restPokemonData.description
+            }
         }
-        })
-        */
-    //}
 
-
-
-
+    }
 
 
 }
