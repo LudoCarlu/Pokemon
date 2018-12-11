@@ -17,6 +17,7 @@ import android.view.KeyEvent.KEYCODE_BACK
 import android.content.DialogInterface
 import android.view.KeyEvent
 import android.view.View
+import com.github.ludoviccarlu.pokemon.presentation.pokemonlist.PokemonTypeListFragment
 
 
 class DetailActivity : AppCompatActivity() {
@@ -48,6 +49,9 @@ class DetailActivity : AppCompatActivity() {
         */
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(showEvolutionDetail, IntentFilter(Common.KEY_NUM_EVOLUTION))
+
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(showTypeList, IntentFilter("type"))
 
     }
 
@@ -86,6 +90,35 @@ class DetailActivity : AppCompatActivity() {
                 val bundle = Bundle()
 
                 bundle.putString("num",num)
+
+                newFragment.arguments = bundle
+
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.detail_pokemon_container, newFragment)
+                fragmentTransaction.commitAllowingStateLoss()
+
+
+            }
+        }
+
+    }
+
+    private val showTypeList = object: BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+
+            if(intent.action!!.toString() == "type") {
+
+                //Delete current fragment to replace it
+                val oldFragment = DetailPokemonFragment.getInstance()
+                supportFragmentManager.beginTransaction().remove(oldFragment).commitAllowingStateLoss()
+
+                val type = intent.getStringExtra("type")
+
+                val newFragment = PokemonTypeListFragment.newInstance()
+
+                val bundle = Bundle()
+
+                bundle.putString("type",type)
 
                 newFragment.arguments = bundle
 
