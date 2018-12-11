@@ -27,6 +27,7 @@ class PokemonViewModel : ViewModel(), LifecycleObserver {
 
 
     var liveDataListPokemon: MutableLiveData<List<Pokemon>> = MutableLiveData()
+    var last_suggest: MutableList<String> = ArrayList()
 
     init {
         initializeDagger()
@@ -36,7 +37,12 @@ class PokemonViewModel : ViewModel(), LifecycleObserver {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({list ->
                     liveDataListPokemon.value = list //TODO
-                    Common.commonPokemonList = list //Utiliser pour le changement des fragments
+                    Common.commonPokemonList = list //Objet statique
+
+                    last_suggest.clear()
+                    for (pokemon in list) {
+                        last_suggest.add(pokemon.name!!)
+                    }
 
                 }, {t : Throwable? ->
                     //TODO Show Error on Screen

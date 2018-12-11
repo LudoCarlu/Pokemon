@@ -60,19 +60,19 @@ class DetailPokemonFragment : Fragment() {
         pokemon_weight = itemView.findViewById(R.id.weight) as TextView
 
         recycler_next_evolution = itemView.findViewById(R.id.recycler_next_evolution) as RecyclerView
-        recycler_next_evolution.setHasFixedSize(true)
+        recycler_next_evolution.setHasFixedSize(false)
         recycler_next_evolution.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         recycler_prev_evolution = itemView.findViewById(R.id.recycler_prev_evolution) as RecyclerView
-        recycler_prev_evolution.setHasFixedSize(true)
+        recycler_prev_evolution.setHasFixedSize(false)
         recycler_prev_evolution.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         recycler_type = itemView.findViewById(R.id.recycler_type) as RecyclerView
-        recycler_type.setHasFixedSize(true)
+        recycler_type.setHasFixedSize(false)
         recycler_type.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         recycler_weaknesses = itemView.findViewById(R.id.recycler_weaknesses) as RecyclerView
-        recycler_weaknesses.setHasFixedSize(true)
+        recycler_weaknesses.setHasFixedSize(false)
         recycler_weaknesses.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         setDetailPokemon(pokemon)
