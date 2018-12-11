@@ -66,4 +66,14 @@ object Common {
         }
     }
 
+    fun findPokemonByType(type: String?): List<Pokemon> {
+        val result = ArrayList<Pokemon>()
+        for (pokemon in commonPokemonList) {
+            if (pokemon.type!!.contains(type)) {
+                result.add(pokemon)
+            }
+        }
+        return result
+    }
+
 }

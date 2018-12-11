@@ -1,6 +1,8 @@
 package com.github.ludoviccarlu.pokemon.presentation.detail
 
 import android.content.Context
+import android.content.Intent
+import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -44,10 +46,10 @@ class PokemonTypeAdapter(var context:Context, var typeList:List<String>) : Recyc
                     //context.startActivity(DetailActivity.newInstance(context, model.id))
                     Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
 
-                    /*
+
                     LocalBroadcastManager.getInstance(context)
-                            .sendBroadcast(Intent("EXTRA_DETAIL_ID_POKEMON").putExtra("idPokemon",model.id))
-                    */
+                            .sendBroadcast(Intent("type").putExtra("type",model))
+
                 }
 
             }
