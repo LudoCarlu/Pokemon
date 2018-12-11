@@ -49,7 +49,7 @@ class PokemonTypeListFragment : Fragment() {
 
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(PokemonViewModel::class.java)
-        viewModel.let { lifecycle.addObserver(it) }
+        //viewModel.let { lifecycle.addObserver(it) }
 
     }
 
