@@ -1,3 +1,4 @@
+
 package com.github.ludoviccarlu.pokemon.presentation.pokemonlist
 
 import android.arch.lifecycle.Observer
@@ -13,7 +14,7 @@ import com.github.ludoviccarlu.pokemon.domain.Pokemon
 import kotlinx.android.synthetic.main.activity_pokemon_list.*
 
 class PokemonListActivity : AppCompatActivity() {
-
+/*
     private lateinit var viewModel : PokemonViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +44,6 @@ class PokemonListActivity : AppCompatActivity() {
         recycler_list_pokemon.adapter = PokemonAdapter(this, list)
 
     }
-
+*/
 
 }

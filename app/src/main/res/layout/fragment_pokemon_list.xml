@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".presentation.pokemonlist.PokemonListFragment">
 
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/search_bar"
+        app:mt_speechMode="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.mancj.materialsearchbar.MaterialSearchBar>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_list_pokemon"
         android:layout_width="0dp"
@@ -17,8 +25,9 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></android.support.v7.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"></android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
 
