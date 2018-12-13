@@ -18,7 +18,6 @@ import com.github.ludoviccarlu.pokemon.R
 import com.github.ludoviccarlu.pokemon.data.common.Common
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
 import com.mancj.materialsearchbar.MaterialSearchBar
-import kotlinx.android.synthetic.main.activity_pokemon_list.*
 import kotlinx.android.synthetic.main.fragment_pokemon_list.*
 import kotlinx.android.synthetic.main.fragment_pokemon_type_list.*
 

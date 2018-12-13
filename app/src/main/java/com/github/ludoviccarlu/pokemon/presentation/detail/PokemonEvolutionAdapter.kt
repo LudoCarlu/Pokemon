@@ -43,8 +43,6 @@ class PokemonEvolutionAdapter(var context: Context, var evolutionList:List<Evolu
 
                 chip.setOnChipClickListener {
 
-
-                    //context.startActivity(DetailActivity.newInstance(context, Common.findPokemonByNum(model.num)?.id))
                     Toast.makeText(context, "Clicked on : " + model.name, Toast.LENGTH_SHORT).show()
 
 
