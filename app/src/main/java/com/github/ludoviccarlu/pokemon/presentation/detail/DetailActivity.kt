@@ -12,19 +12,12 @@ import android.support.v7.app.AppCompatActivity
 import com.github.ludoviccarlu.pokemon.R
 import com.github.ludoviccarlu.pokemon.data.common.Common
 import kotlinx.android.synthetic.main.detail_activity.*
-import javax.inject.Inject
-import android.view.KeyEvent.KEYCODE_BACK
-import android.content.DialogInterface
-import android.view.KeyEvent
-import android.view.View
 import com.github.ludoviccarlu.pokemon.presentation.pokemonlist.PokemonTypeListFragment
 
 
 class DetailActivity : AppCompatActivity() {
 
     //context.startActivity(DetailActivity.newInstance(context, id))
-    @Inject
-    lateinit var viewModel : DetailViewModel
 
     companion object {
         private const val EXTRA_POKEMON_ID = "idPokemon"
@@ -43,10 +36,6 @@ class DetailActivity : AppCompatActivity() {
         initFragment()
 
         //Register BroadCast
-        /*
-        LocalBroadcastManager.getInstance(this)
-                .registerReceiver(showDetailPokemonFragment, IntentFilter("EXTRA_DETAIL_ID_POKEMON"))
-        */
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(showEvolutionDetail, IntentFilter(Common.KEY_NUM_EVOLUTION))
 

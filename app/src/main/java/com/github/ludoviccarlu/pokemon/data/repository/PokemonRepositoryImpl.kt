@@ -1,17 +1,8 @@
 package com.github.ludoviccarlu.pokemon.data.repository
 
-import android.util.Log
-import com.github.ludoviccarlu.pokemon.data.common.Common.commonPokemonList
-import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemon
-import com.github.ludoviccarlu.pokemon.data.pojo.RestPokemonDetail
 import com.github.ludoviccarlu.pokemon.data.remote.RestApiService
-import com.github.ludoviccarlu.pokemon.domain.Evolution
 import com.github.ludoviccarlu.pokemon.domain.Pokemon
-import io.reactivex.Observable
 import io.reactivex.Single
-import org.json.JSONArray
-import org.json.JSONObject
-import retrofit2.Response
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -29,7 +20,7 @@ class PokemonRepositoryImpl @Inject constructor(
         return restApiService.getListPokemon()
                 .map { response ->
                     if (response.isSuccessful && response.body() != null) {
-                        System.out.println("RESPONSE " + response.body()?.pokemon)
+                        //System.out.println("RESPONSE " + response.body()?.pokemon)
                         response.body()?.pokemon
                     } else {
                         null
@@ -37,18 +28,6 @@ class PokemonRepositoryImpl @Inject constructor(
                 }
     }
 
-    /*
-    override fun getPokemonById(id : Int): Pokemon? {
-
-        commonPokemonList.forEach {
-            if (it.id == id) {
-                return it
-            }
-        }
-        return null
-
-    }
-    */
 
 
 }

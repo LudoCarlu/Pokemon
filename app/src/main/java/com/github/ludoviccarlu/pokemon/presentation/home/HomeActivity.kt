@@ -28,49 +28,11 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        //toolbar.setTitle("POKEMON LIST")
-        //setSupportActionBar(toolbar)
 
         supportFragmentManager.beginTransaction()
                 .replace(R.id.list_pokemon_fragment, PokemonListFragment.newInstance())
                 .commit()
 
-        //Register BroadCast
-        /*
-        LocalBroadcastManager.getInstance(this)
-                .registerReceiver(showDetailPokemonFragment, IntentFilter("EXTRA_DETAIL_ID_POKEMON"))
-        */
-    }
-
-    //Handle Broadcast handle
-
-
-    private val showDetailPokemonFragment = object:BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-
-            if(intent.action.toString() == "EXTRA_DETAIL_ID_POKEMON") {
-                //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-                //supportActionBar!!.setDisplayShowHomeEnabled(true)
-
-                //Replace Fragment
-                val detailFragment = DetailPokemonFragment.getInstance()
-                val idPokemon = intent.getIntExtra("idPokemon", -1)
-
-                val bundle = Bundle()
-                bundle.putInt("idPokemon",idPokemon)
-
-                detailFragment.arguments = bundle
-
-                val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.list_pokemon_fragment, detailFragment)
-                //fragmentTransaction.addToBackStack("detail")
-                fragmentTransaction.commit()
-
-
-
-            }
-        }
-        
     }
 
 }

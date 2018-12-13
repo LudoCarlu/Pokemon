@@ -43,8 +43,7 @@ class PokemonTypeAdapter(var context:Context, var typeList:List<String>) : Recyc
 
                 chip.setOnChipClickListener {
 
-                    //context.startActivity(DetailActivity.newInstance(context, model.id))
-                    Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
 
 
                     LocalBroadcastManager.getInstance(context)
