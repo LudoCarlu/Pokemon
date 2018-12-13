@@ -1,5 +1,6 @@
 package com.github.ludoviccarlu.pokemon.presentation.home
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.github.ludoviccarlu.pokemon.R
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
