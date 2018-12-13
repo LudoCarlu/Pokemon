@@ -11,8 +11,7 @@
         android:id="@+id/gif"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/pikachu"
-        android:background="@color/white"
+        android:src="@drawable/pokeball"
         android:scaleType="centerInside"
         />
 
