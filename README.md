@@ -2,11 +2,11 @@
 
 ## Membres de l'équipe (4A CFA)
 
-- Amine Azlouk
-- Ludovic Carlu
-- Maxime Faivre
+- AA
+- LC
+- MF
 - Kvn
-- Ilyess Marouf
+- IM
 
 ## Présentation
 
