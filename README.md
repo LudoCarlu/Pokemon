@@ -5,7 +5,7 @@
 - Amine Azlouk
 - Ludovic Carlu
 - Maxime Faivre
-- Kevin Le Borgne
+- Kvn
 - Ilyess Marouf
 
 ## Présentation
